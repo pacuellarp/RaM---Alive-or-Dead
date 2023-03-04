@@ -1,0 +1,40 @@
+{
+  "name": "rick-and-morty-app",
+  "version": "1.0.0",
+  "description": "A web app about Rick and Morty.",
+  "main": "\u001b[H\u001b[H\u001b[3~\u001b[3~\u001b[C\u001b[F\u001b[C\u001b[F\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[F\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[src/index\u001b[2~\u001b[D\u001b[2~dd\u001b[D\u001b[D\u001b[dex.js",
+  "scripts": {
+    "build": "webpack --mode=development",
+    "dev": "webpack serve --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacuellarp/Are-they-alive-.git"
+  },
+  "keywords": [
+    "React",
+    "Rick",
+    "Morty"
+  ],
+  "author": "Paul Cuellar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pacuellarp/Are-they-alive-/issues"
+  },
+  "homepage": "https://github.com/pacuellarp/Are-they-alive-#readme",
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.2",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
