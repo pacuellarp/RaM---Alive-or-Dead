@@ -1,16 +1,21 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports={
     entry: './src/index.js',
     output:{
-        path: path.resolve(__dirname,
-            'dist'),
-            filename: 'main.js',
+        path: path.resolve(__dirname,'dist'),
+        filename: '[name].[contenthash].js',
+        assetModuleFilename: 'assets/images/[hash][ext][query]',
+        clean:true,
     },
     resolve:{
         extensions: ['.js','.jsx'],
     },
+    devtool:'source-map',
     plugins:[
         new HtmlWebpackPlugin({
             inject: 'body',
@@ -18,6 +23,12 @@ module.exports={
             filename: './index.html'
         })
     ],
+    optimization:{
+        minimize:true,
+        minimizer:[
+            new CssMinizerPlugin(),
+        ],
+    },
     module:{
         rules:[
             {
@@ -29,9 +40,33 @@ module.exports={
                         runtime: 'automatic',
                     }
                     ]
-                }
-            }
-        ]
+                },
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use:[
+                    {
+                        loader:MiniCssExtractPlugin.loader,
+                        options:{
+                            publicPath:'/dist/',
+                        },    
+                    },
+                    'css.loader',
+                    'sass-loader',
+                ],
+            },
+            {
+                test:/\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test:/\.(woff|woff2|eot|ttf|otf)$/i,
+                type:'asset/resource',
+                generator:{
+                    filename:'assets/fonts/[hash][ext]',
+                },
+            },
+        ],
     },
     devServer:{
         open:true,
@@ -43,5 +78,6 @@ module.exports={
         static:{
             directory: path.join(__dirname, 'public'),
         },
+        historyApiFallback: true,
     },
 };
