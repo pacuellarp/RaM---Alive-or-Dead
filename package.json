@@ -1,51 +1,23 @@
 {
-  "name": "rick-and-morty-app",
-  "version": "1.0.0",
-  "description": "A web app about Rick and Morty.",
-  "main": "\u001b[H\u001b[H\u001b[3~\u001b[3~\u001b[C\u001b[F\u001b[C\u001b[F\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[F\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[src/index\u001b[2~\u001b[D\u001b[2~dd\u001b[D\u001b[D\u001b[dex.js",
+  "name": "ramaliveordead",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "webpack --mode=development",
-    "dev": "webpack serve --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pacuellarp/Are-they-alive-.git"
-  },
-  "keywords": [
-    "React",
-    "Rick",
-    "Morty"
-  ],
-  "author": "Paul Cuellar",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pacuellarp/Are-they-alive-/issues"
-  },
-  "homepage": "https://github.com/pacuellarp/Are-they-alive-#readme",
-  "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
-    "babel-loader": "^9.1.2",
-    "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "^4.2.2",
-    "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.5.0",
-    "install": "^0.13.0",
-    "mini-css-extract-plugin": "^2.7.2",
-    "react-router": "^6.8.2",
-    "react-router-dom": "^6.8.2",
-    "sass": "^1.58.3",
-    "sass-loader": "^13.2.0",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@babel/core": "^7.21.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.1.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.3"
   }
 }
