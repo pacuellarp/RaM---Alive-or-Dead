@@ -9,11 +9,15 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
+      "principal-blue": "#11AEBF",
     },
     extend: {
       screens: {
         custom: "500px",
       },
+    },
+    screens: {
+      "max-width": "1920px",
     },
   },
   plugins: [],

@@ -2,10 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('@fontsource/inter'); 
+/*@import url('@fontsource/inter'); 
 
+/* Estilo general para la fuente Inter */
 body {
   font-family: 'Inter', sans-serif;
+}
+
+/* Estilo específico para tu fuente especial en ciertos lugares */
+@font-face {
+  font-family: 'WubbaLubbaDubDub';
+  src: url('/fonts/WubbaLubbaDubDub.otf') format('opentype'),
+       url('/fonts/WubbaLubbaDubDub.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Aplicar la fuente especial en lugares específicos */
+.fuente-especial {
+  font-family: 'WubbaLubbaDubDub', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -18,7 +33,14 @@ body {
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.5s ease-in-out; /* Duración y función de temporización de la animación */
+  animation: fadeIn 1.5s ease-in-out; /* Duración y función de temporización de la animación */
 }
 
+.animate-fadeIn-second {
+  animation: fadeIn 4.5s ease-in-out; /* Duración y función de temporización de la animación */
+}
 
+.text-outline {
+  -webkit-text-stroke-width: 1px; /* Ancho del contorno */
+  -webkit-text-stroke-color: #7D726A; /* Color del contorno */
+}

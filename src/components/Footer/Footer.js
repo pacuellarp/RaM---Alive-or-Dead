@@ -1,9 +1,8 @@
-
 export default function Footer() {
   return (
-    <div >
-      <footer >
-        <p>hola gonorrea</p>
+    <div>
+      <footer>
+        <p>adios gonorrea</p>
       </footer>
     </div>
   );

@@ -9,7 +9,7 @@ export default function Meta({ pageName }) {
 
       <meta
         name="description"
-        content="Ecommerce de Lunal's Fashion Design, tienda de moda de diseño y fabricación 100% nacional."
+        content="Is your favorite Rick and Morty character dead or alive? Let's find it out!"
       />
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
