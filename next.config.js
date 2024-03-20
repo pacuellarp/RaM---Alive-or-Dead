@@ -3,7 +3,6 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
@@ -20,6 +19,12 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "t3.ftcdn.net",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "rickandmortyapi.com",
         port: "",
         pathname: "/**",
       },

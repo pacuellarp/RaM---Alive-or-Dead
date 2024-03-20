@@ -10,14 +10,12 @@ module.exports = {
     colors: {
       ...colors,
       "principal-blue": "#11AEBF",
+      "principal-green": "#79F241",
     },
     extend: {
       screens: {
         custom: "500px",
       },
-    },
-    screens: {
-      "max-width": "1920px",
     },
   },
   plugins: [],
