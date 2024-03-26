@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getAllCharacters } from "@services/CharacterService";
 
-const SearchBar = ({ colorBackground, colorHoverBorder, colorFocusBorder }) => {
+const SearchBar = ({
+  colorBackground,
+  colorHoverBorder,
+  colorFocusBorder,
+  handleItemClick,
+  selectedItemId,
+  showButton,
+}) => {
   const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -16,7 +23,7 @@ const SearchBar = ({ colorBackground, colorHoverBorder, colorFocusBorder }) => {
 
   useEffect(() => {
     // Filtrar los objetos que coincidan con el término de búsqueda
-    if (characters.length > 0 && searchTerm != "") {
+    if (characters.length > 0 && searchTerm !== "") {
       const fData = characters.filter((item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase()),
       );
@@ -24,9 +31,23 @@ const SearchBar = ({ colorBackground, colorHoverBorder, colorFocusBorder }) => {
     }
   }, [characters, searchTerm]);
 
+  const handleKeyDown = (e, itemId) => {
+    if (e.key === "Enter") {
+      handleItemClick(itemId);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedItemId == null) {
+      setSearchTerm("");
+    }
+  }, [selectedItemId]);
+
   return (
     <div
-      className={`flex w-full flex-col items-center justify-center ${colorBackground} py-5 ${filteredData.length > 0 && searchTerm != "" ? "" : "pb-5"}`}
+      className={`flex w-full flex-col items-center justify-center ${colorBackground} py-5 ${
+        filteredData.length > 0 && searchTerm !== "" ? "" : "pb-5"
+      }`}
     >
       <div className={`relative w-5/6`}>
         <input
@@ -35,6 +56,7 @@ const SearchBar = ({ colorBackground, colorHoverBorder, colorFocusBorder }) => {
           placeholder="Type your character"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          disabled={selectedItemId !== null} // Deshabilitar si hay un ID seleccionado
         />
         <button className="absolute inset-y-0 right-0 px-4 text-gray-600 focus:outline-none">
           <svg
@@ -54,37 +76,45 @@ const SearchBar = ({ colorBackground, colorHoverBorder, colorFocusBorder }) => {
         </button>
       </div>
       {/* Mostrar la lista solo si hay elementos filtrados */}
-      {filteredData.length > 0 && searchTerm != "" && (
-        <div className="top-full max-h-[100svh] w-5/6 overflow-y-auto rounded-b-md border border-gray-300 bg-white">
-          <ul>
-            {filteredData.map((item) => (
-              <div
-                key={item.id}
-                className="flex cursor-pointer flex-row items-center justify-center hover:bg-blue-100"
-              >
-                <figure className="md:mr-32 mx-4">
-                  <Image
-                    key={item.id}
-                    src={`${item.image}`}
-                    width={100}
-                    height={100}
-                    alt="Picture of the character"
-                    className=""
-                  />
-                </figure>
-                <ul key={item.id} className="flex flex-col justify-start">
-                  <li k className="lg:text-sm px-4 py-2 text-xs font-bold	">
-                    {item.name}
-                  </li>
-                  <li className="lg:text-sm px-4 py-2 text-xs ">
-                    {item.origin.name}
-                  </li>
-                </ul>
-              </div>
-            ))}
-          </ul>
-        </div>
-      )}
+      {!showButton &&
+        selectedItemId == null &&
+        filteredData.length > 0 &&
+        searchTerm !== "" && (
+          <div className="top-full max-h-[100svh] w-5/6 overflow-y-auto rounded-b-md border border-gray-300 bg-white">
+            <ul>
+              {filteredData.map((item) => (
+                <button
+                  key={item.id}
+                  className={`flex cursor-pointer flex-row items-center justify-center hover:bg-blue-100 ${
+                    selectedItemId === item.id ? "bg-gray-300" : ""
+                  }`}
+                  onClick={() => handleItemClick(item.id)} // Manejar clics en elementos
+                  onKeyDown={(e) => handleKeyDown(e, item.id)} // Manejar teclas en elementos
+                  tabIndex={0} // Hacer el elemento enfocable
+                >
+                  <figure className="mx-4 md:mr-32">
+                    <Image
+                      key={item.id}
+                      src={`${item.image}`}
+                      width={100}
+                      height={100}
+                      alt="Picture of the character"
+                      className=""
+                    />
+                  </figure>
+                  <ul key={item.id} className="flex flex-col justify-start">
+                    <li k className="px-4 py-2 text-xs font-bold lg:text-sm	">
+                      {item.name}
+                    </li>
+                    <li className="px-4 py-2 text-xs lg:text-sm ">
+                      {item.origin.name}
+                    </li>
+                  </ul>
+                </button>
+              ))}
+            </ul>
+          </div>
+        )}
     </div>
   );
 };

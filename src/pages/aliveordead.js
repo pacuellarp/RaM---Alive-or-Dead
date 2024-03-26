@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Layout from "@layout/MainLayout";
 import Circle from "@components/Circle/Circle";
 import DescriptivePhrase from "@components/DescriptivePhrase/DescriptivePhrase";
@@ -5,6 +6,21 @@ import SearchBar from "@components/SearchBar/SearchBar";
 import MainAliveOrDead from "@components/MainAliveOrDead/MainAliveOrDead";
 
 export default function AliveOrDead() {
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [showButton, setShowButton] = useState(false);
+
+  const handleItemClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setShowButton(true);
+  };
+
+  const handleResetClick = () => {
+    setSelectedItemId(null);
+    setTimeout(() => {
+      setShowButton(false);
+    }, 300);
+  };
+
   return (
     <Layout pageName={"Rick-a-nation | Alive or Dead"}>
       <Circle
@@ -25,8 +41,21 @@ export default function AliveOrDead() {
         colorBackground={"bg-[#11AEBF]"}
         colorHoverBorder={"hover:border-blue-400"}
         colorFocusBorder={"focus:border-blue-600"}
+        handleItemClick={handleItemClick}
+        selectedItemId={selectedItemId}
+        showButton={showButton}
       />
       <MainAliveOrDead />
+      {showButton && (
+        <div className="flex items-center justify-center">
+          <button
+            className={`${selectedItemId != null ? "animation-up" : "animation-down"} absolute rounded-full bg-[#F2EA77] px-4 py-2 font-bold text-[#241F40] hover:bg-[#E0E694]`}
+            onClick={handleResetClick}
+          >
+            Back to search for another one
+          </button>
+        </div>
+      )}
     </Layout>
   );
 }
