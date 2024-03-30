@@ -8,14 +8,17 @@ import MainAliveOrDead from "@components/MainAliveOrDead/MainAliveOrDead";
 export default function AliveOrDead() {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [showButton, setShowButton] = useState(false);
+  const [showCharacter, setShowCharacter] = useState(false);
 
   const handleItemClick = (itemId) => {
     setSelectedItemId(itemId);
     setShowButton(true);
+    setShowCharacter(true);
   };
 
   const handleResetClick = () => {
     setSelectedItemId(null);
+    setShowCharacter(false);
     setTimeout(() => {
       setShowButton(false);
     }, 300);
@@ -45,7 +48,14 @@ export default function AliveOrDead() {
         selectedItemId={selectedItemId}
         showButton={showButton}
       />
-      <MainAliveOrDead />
+      {!showCharacter && <div className="my-40"></div>}
+      {showButton && (
+        <MainAliveOrDead
+          showButton={showButton}
+          selectedItemId={selectedItemId}
+          showCharacter={showCharacter}
+        />
+      )}
       {showButton && (
         <div className="flex items-center justify-center">
           <button

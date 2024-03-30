@@ -23,6 +23,34 @@ body {
   font-family: 'WubbaLubbaDubDub', sans-serif;
 }
 
+.font-helvetica {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+@font-face {
+  font-family: 'Chaos';
+  src: url('/fonts/CHAOS.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Aplicar la fuente especial en lugares específicos */
+.fuente-chaos {
+  font-family: 'Chaos', sans-serif;
+}
+
+@font-face {
+  font-family: 'GoodNews';
+  src: url('/fonts/GOODNEWS.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Aplicar la fuente especial en lugares específicos */
+.fuente-good-news {
+  font-family: 'GoodNews', sans-serif;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -104,6 +132,38 @@ body {
   }
   100% {
     transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+
+
+.animation-up-2 {
+  animation: slide-up-2 0.3s ease;
+}
+
+@keyframes slide-up-2 {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.animation-down-2 {
+  animation: slide-down-2 0.31s ease;
+}
+
+@keyframes slide-down-2 {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20%);
     opacity: 0;
   }
 }

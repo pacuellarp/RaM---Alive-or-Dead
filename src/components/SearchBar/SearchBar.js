@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { getAllCharacters } from "@services/CharacterService";
+import { getAllCharacters } from "@services/CharactersService";
 
 const SearchBar = ({
   colorBackground,
@@ -85,7 +85,7 @@ const SearchBar = ({
               {filteredData.map((item) => (
                 <button
                   key={item.id}
-                  className={`flex cursor-pointer flex-row items-center justify-center hover:bg-blue-100 ${
+                  className={`flex w-full cursor-pointer flex-row items-center justify-center hover:bg-blue-100 ${
                     selectedItemId === item.id ? "bg-gray-300" : ""
                   }`}
                   onClick={() => handleItemClick(item.id)} // Manejar clics en elementos
