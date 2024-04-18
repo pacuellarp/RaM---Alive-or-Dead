@@ -11,7 +11,7 @@ export default function PortalVideo() {
         preload="none"
         loop
         autoPlay
-        className="animate-fadeIn w-screen max-width:h-screen"
+        className="animate-fadeIn max-width:h-screen w-screen"
       >
         <source src="/portal.mp4" type="video/mp4" />
         Your browser does not support the video tag.

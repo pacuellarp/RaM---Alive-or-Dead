@@ -25,9 +25,9 @@ export default function AliveOrDead() {
   };
 
   return (
-    <Layout pageName={"Rick-a-nation | Alive or Dead"}>
+    <Layout pageName={"Alive or Dead? | Rick-a-nation"}>
       <Circle
-        message={"Alive or Dead"}
+        message={"Alive or Dead?"}
         colorText={"text-principal-green"}
         textOutline={"text-outline-2"}
         shape={"shape"}
