@@ -60,8 +60,22 @@ body {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
 .animate-fadeIn {
   animation: fadeIn 1.5s ease-in-out; /* Duración y función de temporización de la animación */
+}
+
+.animate-fadeOut {
+  animation: fadeOut 1.5s ease-in-out; /* Duración y función de temporización de la animación */
 }
 
 .animate-fadeIn-second {
@@ -86,6 +100,11 @@ body {
 .text-outline-4 {
   -webkit-text-stroke-width: 0.1px; /* Ancho del contorno */
   -webkit-text-stroke-color: #B17B3A; /* Color del contorno */
+}
+
+.text-outline-5 {
+  -webkit-text-stroke-width: 0.1px; /* Ancho del contorno */
+  -webkit-text-stroke-color: #2C3F59; /* Color del contorno */
 }
 
 
@@ -119,6 +138,13 @@ body {
 
 .shape2 {
   background: linear-gradient(45deg, #C88BBE 0%, #F280DF 100%);
+  animation: morph 8s ease-in-out infinite;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  box-shadow: 0 0 20px #000;
+}
+
+.shape3 {
+  background: linear-gradient(45deg, #EAE167 0%, #F2E96B 100%);
   animation: morph 8s ease-in-out infinite;
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   box-shadow: 0 0 20px #000;

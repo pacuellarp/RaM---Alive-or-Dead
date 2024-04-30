@@ -5,6 +5,7 @@ import { getInfoLocations } from "@services/InfoLocationsService";
 import { getCharacter } from "@services/CharacterService";
 import { getEpisode } from "@services/EpisodeService";
 import { getLocation } from "@services/LocationService";
+import TriviaOptions from "@components/TriviaOptions/TriviaOptions";
 
 export default function MainRickANation() {
   const [numEpisodes, setNumEpisodes] = useState(0);
@@ -13,6 +14,9 @@ export default function MainRickANation() {
   const [episodeToFirstQuestion, setEpisodeToFirstQuestion] = useState(null);
   const [idCharactersToFirstQuestion, setIdCharactersToFirstQuestion] =
     useState([]);
+  const [charactersToFirstQuestion, setCharactersToFirstQuestion] = useState(
+    [],
+  );
   const [locationsToSecondQuestion, setLocationsToSecondQuestion] = useState(
     [],
   );
@@ -20,11 +24,19 @@ export default function MainRickANation() {
     useState([]);
   const [idCharactersToSecondQuestion, setIdCharactersToSecondQuestion] =
     useState([]);
+  const [charactersToSecondQuestion, setcharactersToSecondQuestion] = useState(
+    [],
+  );
   const [characterToThirdQuestion, setCharacterToThirdQuestion] =
     useState(null);
   const [idEpisodesToThirdQuestion, setIdEpisodesToThirdQuestion] = useState(
     [],
   );
+  const [episodesToThirdQuestion, setEpisodesToThirdQuestion] = useState([]);
+  const [enableGoButton, setEnableGoButton] = useState(false);
+  const [showQuestions, setShowQuestions] = useState(false);
+  const [resetQuestions, setResetQustions] = useState(true);
+  const [transitionResults, setTransitionResults] = useState(false);
 
   useEffect(() => {
     const fetchNumEpisodes = async () => {
@@ -35,13 +47,16 @@ export default function MainRickANation() {
         setNumEpisodes(numberEpisodes);
         setNumLocations(numberLocations);
         setNumCharacters(numberCharacters);
+        setResetQustions(false);
       } catch (error) {
         console.error("Error fetching number of episodes:", error);
       }
     };
 
-    fetchNumEpisodes();
-  }, []);
+    if (resetQuestions) {
+      fetchNumEpisodes();
+    }
+  }, [resetQuestions]);
 
   function generateNaturalNumber(min, max) {
     // Asegurarse de que los valores son enteros
@@ -291,7 +306,10 @@ export default function MainRickANation() {
 
       while (selectedNumbers.length >= 1 && selectedNumbers.length < 3) {
         const randomEpisode = generateNaturalNumber(1, numEpisodes + 1);
-        if (episodesWithCharacter.includes(randomEpisode)) {
+        if (
+          episodesWithCharacter.includes(randomEpisode) ||
+          selectedNumbers.includes(randomEpisode)
+        ) {
           continue;
         } else {
           selectedNumbers.push(randomEpisode);
@@ -310,22 +328,143 @@ export default function MainRickANation() {
     }
   }, [numEpisodes, numLocations, numCharacters, characterToThirdQuestion]);
 
+  useEffect(() => {
+    if (idCharactersToFirstQuestion.length == 4) {
+      const fetchFirstCharacters = async () => {
+        let characters = [];
+        for (const id of idCharactersToFirstQuestion) {
+          const character = await getCharacter(id);
+          characters.push(character);
+        }
+        setCharactersToFirstQuestion(characters);
+      };
+      fetchFirstCharacters();
+    }
+  }, [idCharactersToFirstQuestion]);
+
+  useEffect(() => {
+    if (idLocationsToSecondQuestion.length == 3) {
+      const fetchSecondLocations = async () => {
+        let locations = [];
+        for (const [indice, id] of idLocationsToSecondQuestion.entries()) {
+          if (indice > 0) {
+            const location = await getLocation(id);
+            locations.push(location);
+          }
+        }
+        setLocationsToSecondQuestion((prevState) => [
+          ...prevState,
+          ...locations,
+        ]);
+      };
+      fetchSecondLocations();
+    }
+  }, [idLocationsToSecondQuestion]);
+
+  useEffect(() => {
+    if (idCharactersToSecondQuestion.length == 2) {
+      const fetchSecondCharacter = async () => {
+        let characters = [];
+        for (const id of idCharactersToSecondQuestion) {
+          const character = await getCharacter(id);
+          characters.push(character);
+        }
+        setcharactersToSecondQuestion(characters);
+      };
+      fetchSecondCharacter();
+    }
+  }, [idCharactersToSecondQuestion]);
+
+  useEffect(() => {
+    if (idEpisodesToThirdQuestion.length == 3) {
+      const fetchThirdQuestion = async () => {
+        let episodes = [];
+        for (const id of idEpisodesToThirdQuestion) {
+          const episode = await getEpisode(id);
+          episodes.push(episode);
+        }
+        setEpisodesToThirdQuestion(episodes);
+      };
+      fetchThirdQuestion();
+    }
+  }, [idEpisodesToThirdQuestion]);
+
+  useEffect(() => {
+    console.log(
+      charactersToFirstQuestion,
+      locationsToSecondQuestion,
+      episodesToThirdQuestion,
+      charactersToSecondQuestion,
+      characterToThirdQuestion,
+    );
+    if (
+      charactersToFirstQuestion.length == 4 &&
+      locationsToSecondQuestion.length == 3 &&
+      episodesToThirdQuestion.length == 3
+    ) {
+      setEnableGoButton(true);
+    }
+  }, [
+    charactersToFirstQuestion,
+    locationsToSecondQuestion,
+    episodesToThirdQuestion,
+  ]);
+
+  // Maneja el clic del botón Go
+  const handleGoClick = () => {
+    setEnableGoButton(false);
+    setShowQuestions(true);
+  };
+
+  const handleResetButton = () => {
+    setTransitionResults(false);
+    setTimeout(() => {
+      setShowQuestions(false);
+      setEnableGoButton(false);
+      setNumEpisodes(0);
+      setNumLocations(0);
+      setNumCharacters(0);
+      setEpisodeToFirstQuestion(null);
+      setIdCharactersToFirstQuestion([]);
+      setCharactersToFirstQuestion([]);
+      setLocationsToSecondQuestion([]);
+      setIdLocationsToSecondQuestion([]);
+      setIdCharactersToSecondQuestion([]);
+      setcharactersToSecondQuestion([]);
+      setCharacterToThirdQuestion(null);
+      setIdEpisodesToThirdQuestion([]);
+      setEpisodesToThirdQuestion([]);
+      setResetQustions(true);
+    }, 1500);
+  };
+
   return (
-    <div className="bg-[#C79ABF]">
-      <p>Hola</p>
-      <button
-        onClick={() => {
-          console.log(
-            numEpisodes,
-            numLocations,
-            numCharacters,
-            characterToThirdQuestion,
-            idEpisodesToThirdQuestion,
-          );
-        }}
-      >
-        Click me!
-      </button>
+    <div className="mb-5 flex flex-col items-center justify-center bg-[#d8bbd3]">
+      {!showQuestions && (
+        <div className="flex flex-col">
+          <h2 className="my-6 text-2xl text-[#1177BF]">Ready?</h2>
+          <button
+            className={`${enableGoButton ? "bg-blue-500 hover:bg-blue-400" : "bg-gray-500"} my-6 rounded-lg px-4 py-2 text-white`}
+            onClick={handleGoClick}
+            disabled={!enableGoButton}
+            title="If the button doesn't turn blue, refresh the page."
+          >
+            Go!
+          </button>
+        </div>
+      )}
+      {showQuestions && (
+        <TriviaOptions
+          characters={charactersToFirstQuestion}
+          locations={locationsToSecondQuestion}
+          episodes={episodesToThirdQuestion}
+          resetFunction={handleResetButton}
+          charactersToSecondQuestion={charactersToSecondQuestion}
+          characterToThirdQuestion={characterToThirdQuestion}
+          transitionResults={transitionResults}
+          setTransitionResults={setTransitionResults}
+        />
+      )}
     </div>
   );
 }

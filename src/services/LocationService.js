@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 }
 
 export async function getLocation(id) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}/location/${id}`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}location/${id}`;
   let location = {};
 
   try {

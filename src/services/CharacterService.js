@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 }
 
 export async function getCharacter(id) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}/character/${id}`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}character/${id}`;
   let character = {};
 
   try {

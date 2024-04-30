@@ -26,19 +26,19 @@ export default function Header() {
       <div className="container mx-auto">
         <Link
           href="/"
-          class="mb-4 flex items-center space-x-3 sm:mb-0 rtl:space-x-reverse"
+          className="mb-4 flex items-center space-x-3 sm:mb-0 rtl:space-x-reverse"
         >
-          <span class="fuente-especial text-outline-3 self-center whitespace-nowrap text-3xl font-semibold text-[#F26671]">
+          <span className="fuente-especial text-outline-3 self-center whitespace-nowrap text-3xl font-semibold text-[#F26671]">
             Rick-a-nation
           </span>
         </Link>
       </div>
       <nav className="hidden w-2/3 flex-col md:flex">
-        <ul class="flex flex-row items-center justify-center text-sm text-white sm:mb-0 xl:text-base  dark:text-gray-400">
+        <ul className="flex flex-row items-center justify-center text-sm text-white sm:mb-0 xl:text-base  dark:text-gray-400">
           <li>
             <Link
               href="#"
-              class="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
+              className="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
             >
               About
             </Link>
@@ -46,7 +46,7 @@ export default function Header() {
           <li>
             <Link
               href="/aliveordead"
-              class="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
+              className="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
             >
               Alive or Dead?
             </Link>
@@ -54,7 +54,7 @@ export default function Header() {
           <li>
             <Link
               href="/rick-a-challenge"
-              class="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
+              className="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
             >
               Rick-a-challenge!
             </Link>
@@ -62,7 +62,7 @@ export default function Header() {
           <li>
             <Link
               href="/mortypedia"
-              class="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
+              className="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
             >
               Mortypedia
             </Link>

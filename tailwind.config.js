@@ -12,6 +12,7 @@ module.exports = {
       "principal-blue": "#11AEBF",
       "principal-green": "#79F241",
       "principal-orange": "#DC8823",
+      "second-blue": "#7BB0FB",
     },
     extend: {
       screens: {

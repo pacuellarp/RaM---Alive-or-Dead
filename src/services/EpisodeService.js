@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 }
 
 export async function getEpisode(id) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}/episode/${id}`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}episode/${id}`;
   let episode = {};
 
   try {
