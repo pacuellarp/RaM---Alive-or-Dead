@@ -28,7 +28,7 @@ export default function Header() {
           href="/"
           className="mb-4 flex items-center space-x-3 sm:mb-0 rtl:space-x-reverse"
         >
-          <span className="fuente-especial text-outline-3 self-center whitespace-nowrap text-3xl font-semibold text-[#F26671]">
+          <span className="fuente-especial text-outline-3 text-md self-center whitespace-nowrap font-semibold text-[#F26671] min-[330px]:text-lg min-[500px]:text-xl sm:text-2xl md:text-3xl">
             Rick-a-nation
           </span>
         </Link>
@@ -37,7 +37,7 @@ export default function Header() {
         <ul className="flex flex-row items-center justify-center text-sm text-white sm:mb-0 xl:text-base  dark:text-gray-400">
           <li>
             <Link
-              href="#"
+              href="/#about"
               className="transition-colors duration-300 hover:text-[#F2CA7E] md:me-6"
             >
               About
@@ -98,22 +98,28 @@ export default function Header() {
             {open && (
               <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg">
                 <Link
-                  href="#"
+                  href="/#about"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                 >
-                  Opción 1
+                  About
                 </Link>
                 <Link
-                  href="#"
+                  href="/aliveordead"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                 >
-                  Opción 2
+                  Alive or Dead?
                 </Link>
                 <Link
-                  href="#"
+                  href="/rick-a-challenge"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                 >
-                  Opción 3
+                  Rick-a-challenge!
+                </Link>
+                <Link
+                  href="/mortypedia"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                >
+                  Mortypedia
                 </Link>
               </div>
             )}

@@ -16,7 +16,7 @@ export default function Footer() {
           <ul className="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <Link
-                href="#"
+                href="/#aboutus"
                 className="me-4 transition-colors duration-300 hover:text-blue-700 md:me-6"
               >
                 About
