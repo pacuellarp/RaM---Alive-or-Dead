@@ -27,7 +27,7 @@ export default function Mortypedia() {
   };
 
   return (
-    <Layout pageName={"Rick-a-challenge! | Mortypedia"}>
+    <Layout pageName={"Mortypedia | Rick-a-nation"}>
       <Circle
         message={"Mortypedia"}
         colorText={"text-second-blue"}
